@@ -3,6 +3,10 @@
  */
 package org.example;
 
+import org.example.EndPoint.EndPoint;
+import org.example.EndPoint.EndPointImpl;
+import org.example.EndPoint.RateLimitedEndPoint;
+import org.example.RateLimiters.LeakyBucketRateLimiter;
 import org.example.RequestSimulator.RequestSimulator;
 
 public class App {
@@ -14,18 +18,5 @@ public class App {
 
         int numOfThreads = Integer.parseInt(args[0]);
         int numOfRequestPerSecond = Integer.parseInt(args[1]);
-
-        RequestSimulator requestSimulator = new RequestSimulator(numOfRequestPerSecond, numOfThreads);
-        requestSimulator.startRequests();
-
-        Runtime.getRuntime().addShutdownHook(new Thread(requestSimulator::stopRequests));
-
-
-/*        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.exit(0);*/
     }
 }

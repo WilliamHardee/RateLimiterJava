@@ -11,4 +11,6 @@ plugins {
 }
 
 rootProject.name = "RateLimiterJava"
-include("app")
+
+include("rate-limited-api")
+include("request-simulator")
