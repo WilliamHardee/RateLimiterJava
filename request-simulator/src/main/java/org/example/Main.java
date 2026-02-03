@@ -1,11 +1,13 @@
 package org.example;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome 2!");
-
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+        RequestSimulator simulator = new RequestSimulator(2, 2);
+        simulator.startRequests();
     }
+
 }
