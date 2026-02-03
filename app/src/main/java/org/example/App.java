@@ -3,12 +3,29 @@
  */
 package org.example;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import org.example.RequestSimulator.RequestSimulator;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        if(args.length < 2) {
+            System.out.println("Usage: RequestSimulator <threads> <requestsPerSecond>");
+            return;
+        }
+
+        int numOfThreads = Integer.parseInt(args[0]);
+        int numOfRequestPerSecond = Integer.parseInt(args[1]);
+
+        RequestSimulator requestSimulator = new RequestSimulator(numOfRequestPerSecond, numOfThreads);
+        requestSimulator.startRequests();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(requestSimulator::stopRequests));
+
+
+/*        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.exit(0);*/
     }
 }
