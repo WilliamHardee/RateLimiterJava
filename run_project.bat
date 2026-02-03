@@ -1,11 +1,10 @@
-echo Compiling project...
+@echo off
 call gradlew.bat build
 
-echo Starting Server...
-start /b gradlew.bat :rate-limited-api:run
+start "Spring Boot Server" cmd /k "gradlew.bat :rate-limited-api:run"
 
-echo Waiting for server...
 timeout /t 5
 
-echo Starting Simulator...
-call gradlew.bat :request-simulator:run
+start "Request Simulator" cmd /k "gradlew.bat :request-simulator:run"
+
+pause
