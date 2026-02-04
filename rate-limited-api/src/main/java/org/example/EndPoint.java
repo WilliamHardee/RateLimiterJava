@@ -1,6 +1,7 @@
 package org.example;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.example.RateLimiters.LeakyBucketLimiter;
 import org.example.RateLimiters.RateLimiter;
 import org.example.RateLimiters.TokenBucketLimiter;
 import org.slf4j.Logger;
@@ -14,14 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class EndPoint {
 
     private static final Logger log = LoggerFactory.getLogger(EndPoint.class);
-    private final RateLimiter rateLimiter = new TokenBucketLimiter(5, 1);
+    private final RateLimiter rateLimiter = new LeakyBucketLimiter(3, 1);
 
     @GetMapping("/ping")
     public ResponseEntity ping(HttpServletRequest request) {
-
-        log.info("Got request");
-        if(rateLimiter.allowRequest(request))
+        log.info("got request");
+        if(rateLimiter.allowRequest(request)) {
+            log.info("Request Allowed");
             return ResponseEntity.ok().build();
+        }
         return ResponseEntity.status(HttpStatusCode.valueOf(429)).build();
     }
 }

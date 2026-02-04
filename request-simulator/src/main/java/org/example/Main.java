@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        RequestSimulator simulator = new RequestSimulator(2, 2);
+        RequestSimulator simulator = new RequestSimulator(3, 4);
         simulator.startRequests();
     }
 

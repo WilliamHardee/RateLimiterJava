@@ -29,8 +29,8 @@ public class RequestSimulator {
                 .GET()
                 .build();
         try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.statusCode());
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenAccept(response -> System.out.println(response.statusCode()));
         }
         catch(Exception e) {
             e.printStackTrace();
