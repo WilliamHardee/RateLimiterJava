@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class TokenBucketLimiter implements RateLimiter{
+public class TokenBucketLimiter implements RateLimiter {
     private long bucketCapacity;
     private int refillRate;
     private long curBucketSize;

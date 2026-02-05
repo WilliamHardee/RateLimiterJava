@@ -34,11 +34,9 @@ public class LeakyBucketLimiter implements RateLimiter{
         Semaphore semaphore = new Semaphore(0);
         semaphoreMap.put(uuid, semaphore);
         if(!bucket.offer(uuid)) {
-            LoggerFactory.getLogger("").info("BUCKET FULL");
             semaphoreMap.remove(uuid);
             return false;
         }
-
         try {
             semaphore.acquire();
         }
