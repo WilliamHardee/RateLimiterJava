@@ -2,8 +2,6 @@ package org.example.RateLimiters;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 public class FixedWindowRateLimiter implements RateLimiter{
     private long windowSizeMilli;
     private int windowCapacity;
