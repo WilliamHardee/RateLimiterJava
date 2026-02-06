@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EndPoint {
 
     private static final Logger log = LoggerFactory.getLogger(EndPoint.class);
-    private final RateLimiter rateLimiter = new SlidingWindowRateLimiter(1, 4);
+    private final RateLimiter rateLimiter = new SlidingWindowCountRateLimiter(1, 4);
 
     @GetMapping("/ping")
     public ResponseEntity ping(HttpServletRequest request) {

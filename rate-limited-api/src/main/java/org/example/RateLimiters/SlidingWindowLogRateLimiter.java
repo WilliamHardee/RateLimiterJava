@@ -4,12 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.LinkedList;
 
-public class SlidingWindowRateLimiter implements RateLimiter{
+public class SlidingWindowLogRateLimiter implements RateLimiter{
     private long windowSizeMillis;
     private long windowCapacity;
     private LinkedList<Long> window;
 
-    public SlidingWindowRateLimiter(double windowSizeSecs, long windowCapacity) {
+    public SlidingWindowLogRateLimiter(double windowSizeSecs, long windowCapacity) {
         this.windowSizeMillis = (long) (windowSizeSecs * 1000);
         this.windowCapacity = windowCapacity;
         this.window = new LinkedList<>();
